@@ -1,9 +1,12 @@
 package org.example.exeptions;
 
-public class WrongLoginException extends Exception
+public class WrongLoginException extends Throwable
 {
-    public WrongLoginException(String message)
+    public WrongLoginException(String s)
     {
-        super(message);
+    }
+
+    public WrongLoginException()
+    {
     }
 }

@@ -5,72 +5,51 @@ import org.example.exeptions.WrongPasswordException;
 
 public class Main
 {
-    public static void main(String[] args) throws WrongLoginException, WrongPasswordException {
 
 
-        char[] login = {'a', 'a', 'a','a', 'a', 'a', 'a', 'a', 'a', '_', '1', '2','3', '4','5','6','7','8', '9', 'W'};
-        char[] password = {'b', 'b', 'b','b', 'b', 'b', 'b', 'b', 'b', '_', '1', '2','3', '4','5','6','7','8', '9'};
-        char[] confirmPassword = {'b', 'b', 'b','b', 'b', 'b', 'b', 'b', 'b', '_', '1', '2','3', '4','5','6','7','8'};
+    public static void main(String[] args)
+    {
+        //  login       java_skypro_go
+        // password     D_1hWiKjjP_9
+        String login = "java_skypro_go";
+        String password = "D_1hWiKjjP_9";
+        String confirmPassword = "D_1hWiKjjP_9";
 
-        login = "java_skypro_go".toCharArray();
-        password = "D_1hWiKjjP_9".toCharArray();
-        //confirmPassword = "D_1hWiKjjP_9";
-        boolean identific;
-
-        /*
-        if (login.length >= 20)
-        {
-            throw new WrongLoginException(" логин больше 20 символов ");
-        }
-        */
 
         try
         {
-            identific = userDataVerification(login, password, confirmPassword);
+            userDataVerification(login, password, confirmPassword);
         }
-        catch (WrongLoginException)
+        catch (WrongLoginException ex)
         {
-            // WrongLoginException
-            if (login.length >= 20)
-            {
-                //System.out.println(" логин длиннее 20 символов ");
-                throw new WrongLoginException("логин больше 20 символов");
-            }
+            System.out.println("Длина логина или пароля более 20 символов");
         }
-        catch (WrongPasswordException)
+        catch (WrongPasswordException ex)
         {
-            // WrongPasswordException
-            if (password.length >= 20)
-            {
-                //System.out.println(" пароль длиннее 20 символов ");
-                throw new WrongPasswordException("пароль больше 20 символов");
-            }
-            else if (password != confirmPassword)
-            {
-                System.out.println(" password и confirmPassword не совпадают ");
-            }
+            System.out.println("Проверьте правильность написания пароля");
         }
         finally
         {
-
+            System.out.println(" проверка окончена ");
         }
-        //System.out.println(userDataVerification(login, password, confirmPassword));
 
-        //System.out.println("Hello world!");
     }
 
-    private static boolean userDataVerification(char[] login, char[] password, char[] confirmPassword)
+    public static boolean userDataVerification(String login, String password, String confirmPassword)
+            throws WrongLoginException, WrongPasswordException
     {
-        if (login ==  "java_skypro_go".toCharArray() && password == "D_1hWiKjjP_9".toCharArray())
-        {
-            System.out.println(" login & password совпали ");
-            return true;
-        }
-        else
-        {
-            System.out.println(" login & password не совпали ");
-            return false;
-        }
 
+        int maxLoginLength = 20;
+        int maxPassLength = 20;
+
+        if (login.length() >= maxLoginLength || password.length() >= maxPassLength)
+        {
+            throw new WrongLoginException();
+        }
+        if (!password.equals(confirmPassword) || !password.matches("[a-zA-Z0-9_]+"))
+        {
+            throw new WrongPasswordException();
+        }
+        return true;
     }
 }

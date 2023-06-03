@@ -2,8 +2,11 @@ package org.example.exeptions;
 
 public class WrongPasswordException extends Throwable
 {
-    public WrongPasswordException(String message)
+    public WrongPasswordException(String s)
     {
-        super(message);
+    }
+
+    public WrongPasswordException()
+    {
     }
 }
