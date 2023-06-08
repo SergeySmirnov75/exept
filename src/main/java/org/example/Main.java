@@ -42,11 +42,11 @@ public class Main
         int maxLoginLength = 20;
         int maxPassLength = 20;
 
-        if (login.length() >= maxLoginLength || password.length() >= maxPassLength)
+        if (login.length() >= maxLoginLength  || !login.matches("[a-zA-Z0-9_]+"))
         {
             throw new WrongLoginException();
         }
-        if (!password.equals(confirmPassword) || !password.matches("[a-zA-Z0-9_]+"))
+        if (!password.equals(confirmPassword) || password.length() >= maxPassLength || !password.matches("[a-zA-Z0-9_]+"))
         {
             throw new WrongPasswordException();
         }
