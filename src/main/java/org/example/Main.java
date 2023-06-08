@@ -22,11 +22,11 @@ public class Main
         }
         catch (WrongLoginException ex)
         {
-            System.out.println("Длина логина или пароля более 20 символов");
+            System.out.println("Длина логина более 20 символов");
         }
         catch (WrongPasswordException ex)
         {
-            System.out.println("Проверьте правильность написания пароля");
+            System.out.println("Проверьте правильность написания пароля или длина пароля более 20 символов");
         }
         finally
         {
